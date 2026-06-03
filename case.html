@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейс Stretch House Киров · Fitbase Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --primary:#3C67D6; --primary-10:#ECF1FF; --primary-20:#CAD9FF;
+    --teal:#26B99A; --blue-light:#3FABFF;
+    --ink:#333333; --black:#252525; --grey:#757885; --grey-l:#9898A5;
+    --bg:#F3F5F8; --card:#FFFFFF; --block:#EEEFF1;
+    --green:#4EB410; --green-10:#EDF7E7;
+    --orange:#F19819; --orange-10:#FEF4E7;
+    --red:#ED3D3D; --red-10:#FDECEC;
+    --border:#E4E6EB;
+    --shadow-md:0 14px 36px rgba(51,51,51,.10);
+    --shadow-lg:0 30px 60px -20px rgba(60,103,214,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Golos Text',-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;font-size:19px;
+    -webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 28px}
+  .narrow{max-width:780px;margin:0 auto;padding:0 28px}
+
+  /* ===== DRAFT NOTE ===== */
+  .draft{background:#FFF7E0;border-bottom:1px solid #F5E2A8;color:#7a5c00;font-size:14px;padding:12px 0}
+  .draft .wrap{max-width:1000px}
+
+  /* ===== HERO ===== */
+  .hero{background:linear-gradient(165deg,#252836 0%,#1c1f2b 100%);color:#fff;padding:96px 0 0;overflow:hidden}
+  .hero .kick{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);
+    color:#fff;font-size:13px;font-weight:600;letter-spacing:.04em;padding:8px 16px;border-radius:100px;
+    margin-bottom:28px;text-transform:uppercase}
+  .hero h1{font-size:64px;line-height:1.02;font-weight:800;letter-spacing:-.035em;max-width:880px;margin-bottom:24px}
+  .hero h1 em{font-style:normal;color:var(--blue-light)}
+  .hero .sub{font-size:23px;line-height:1.45;color:#c2c6d2;max-width:560px;font-weight:400}
+  .hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:48px;align-items:end}
+  .hero-photo{position:relative;align-self:stretch;display:flex;align-items:flex-end}
+  .hero-photo img{width:100%;height:420px;object-fit:cover;object-position:center 25%;
+    border-radius:24px 24px 0 0;box-shadow:0 -20px 60px rgba(0,0,0,.3)}
+  .hero-photo .cap{position:absolute;left:20px;bottom:20px;background:rgba(20,22,30,.72);
+    backdrop-filter:blur(8px);color:#fff;font-size:13px;font-weight:600;padding:8px 14px;border-radius:100px}
+  .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:0;
+    border-top:1px solid rgba(255,255,255,.12)}
+  .hs{padding:32px 24px 40px;border-right:1px solid rgba(255,255,255,.12)}
+  .hs:last-child{border-right:none}
+  .hs .n{font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1;color:#fff}
+  .hs .n .u{font-size:22px;color:var(--blue-light)}
+  .hs .l{font-size:14px;color:#9298a8;margin-top:10px;line-height:1.35}
+
+  /* ===== META STRIP ===== */
+  .meta{background:var(--card);border-bottom:1px solid var(--border)}
+  .meta .wrap{display:flex;flex-wrap:wrap;gap:36px;padding:22px 28px;max-width:1000px}
+  .mi .k{color:var(--grey-l);text-transform:uppercase;letter-spacing:.05em;font-size:11px;font-weight:700}
+  .mi .v{font-weight:600;font-size:15px;margin-top:3px;color:var(--black)}
+
+  /* ===== SECTION ===== */
+  section.block{padding:88px 0}
+  section.block.tight{padding:56px 0}
+  .eyebrow{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--primary);margin-bottom:14px}
+  .eyebrow.red{color:var(--red)}
+  .eyebrow.green{color:var(--green)}
+  h2{font-size:46px;line-height:1.08;font-weight:800;letter-spacing:-.03em;color:var(--black);margin-bottom:22px}
+  h3{font-size:30px;line-height:1.15;font-weight:700;letter-spacing:-.02em;color:var(--black);margin:0 0 14px}
+  p{margin:0 0 22px;color:var(--ink)}
+  p.lead{font-size:23px;line-height:1.5;color:var(--black);font-weight:500}
+  .narrow p{font-size:19px;line-height:1.65}
+  strong{font-weight:700;color:var(--black)}
+
+  /* ===== QUOTE (short & punchy only) ===== */
+  .quote{margin:36px auto;max-width:820px;padding:34px 40px;background:var(--card);
+    border-left:5px solid var(--primary);border-radius:0 18px 18px 0;box-shadow:var(--shadow-md)}
+  .quote p{font-size:30px;line-height:1.3;font-weight:600;letter-spacing:-.02em;color:var(--black);margin:0}
+  .quote cite{display:block;margin-top:16px;font-style:normal;font-size:15px;color:var(--grey);font-weight:600}
+  .quote.green{border-left-color:var(--green)}
+  .quote.teal{border-left-color:var(--teal)}
+
+  /* ===== PAIN GRID ===== */
+  .pains{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:48px}
+  .pain{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px 30px;position:relative}
+  .pain .ic{width:48px;height:48px;border-radius:14px;background:var(--red-10);
+    display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
+  .pain h4{font-size:22px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px;color:var(--black)}
+  .pain p{font-size:16px;line-height:1.55;color:var(--grey);margin:0}
+
+  /* ===== BIG STAT ROW ===== */
+  .bigstat{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;
+    background:var(--card);border:1px solid var(--border);border-radius:24px;padding:44px 48px;margin:40px auto;max-width:900px}
+  .bigstat .num{font-size:88px;font-weight:900;letter-spacing:-.05em;line-height:.9;color:var(--primary);white-space:nowrap}
+  .bigstat .num.green{color:var(--green)}
+  .bigstat .txt{font-size:20px;line-height:1.5;color:var(--ink)}
+  .bigstat .txt b{color:var(--black)}
+
+  /* ===== FEATURE BLOCK (full-width alternating, big) ===== */
+  .feature{padding:80px 0;border-top:1px solid var(--border)}
+  .feature .inner{max-width:1000px;margin:0 auto;padding:0 28px;display:grid;
+    grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+  .feature.rev .text{order:2}
+  .feature .tag{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--primary);background:var(--primary-10);
+    padding:6px 14px;border-radius:100px;margin-bottom:18px}
+  .feature .tag.fav{color:#b45309;background:#FEF3C7}
+  .feature h3{font-size:34px;margin-bottom:16px}
+  .feature p{font-size:18px;line-height:1.6;color:var(--ink)}
+  .feature .score{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:700;
+    color:var(--green);background:var(--green-10);padding:8px 16px;border-radius:100px;margin-top:8px}
+  .feature .visual{background:var(--block);border:1px solid var(--border);border-radius:24px;
+    min-height:340px;display:flex;align-items:center;justify-content:center;
+    color:var(--grey-l);font-size:15px;text-align:center;padding:30px;box-shadow:var(--shadow-lg);position:relative;overflow:hidden}
+  .feature .visual .ph{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .feature .visual .ph .big{font-size:56px;font-weight:900;color:var(--primary);letter-spacing:-.04em}
+  .feature .visual img{border-radius:16px;width:100%;height:auto}
+
+  /* ===== TABLE ===== */
+  .tbl{margin:40px auto;max-width:900px;border:1px solid var(--border);border-radius:20px;overflow:hidden;background:var(--card);box-shadow:var(--shadow-md)}
+  table{width:100%;border-collapse:collapse;font-size:17px}
+  th,td{text-align:left;padding:18px 24px;border-bottom:1px solid var(--border)}
+  th{background:#FAFBFC;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--grey);font-weight:700}
+  tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:600;color:var(--black)}
+  .tbl-hl td{background:var(--primary-10)}
+  td .up{color:var(--green);font-weight:700}
+
+  /* ===== CALLOUT ===== */
+  .callout{margin:32px auto;max-width:820px;padding:28px 32px;border-radius:18px;
+    background:var(--orange-10);border:1px solid #FBDFA8}
+  .callout .t{font-weight:700;color:#b45309;font-size:14px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+  .callout p{margin:0;font-size:17px;line-height:1.55;color:#5b4a2a}
+
+  /* ===== PHOTO ===== */
+  .photo-full{margin:0;height:480px;overflow:hidden}
+  .photo-full img{width:100%;height:100%;object-fit:cover}
+
+  /* ===== NEXT STEP ===== */
+  .next{background:linear-gradient(160deg,var(--primary-10),#F3F8FF);border-top:1px solid var(--primary-20)}
+  .next .inner{max-width:900px;margin:0 auto;padding:0 28px}
+  .next .badge{display:inline-block;background:var(--primary);color:#fff;font-size:13px;font-weight:700;
+    letter-spacing:.04em;padding:7px 16px;border-radius:100px;text-transform:uppercase;margin-bottom:20px}
+
+  /* ===== CTA ===== */
+  .cta{background:linear-gradient(165deg,#252836,#1c1f2b);color:#fff}
+  .cta .inner{max-width:760px;margin:0 auto;padding:88px 28px;text-align:center}
+  .cta h2{color:#fff;font-size:42px;margin-bottom:18px}
+  .cta p{color:#c2c6d2;font-size:20px;max-width:560px;margin:0 auto 32px}
+  .cta a.btn{display:inline-block;background:var(--blue-light);color:#fff;text-decoration:none;font-weight:700;
+    font-size:18px;padding:18px 40px;border-radius:14px;box-shadow:0 4px 14px rgba(63,171,255,.4);transition:transform .15s}
+  .cta a.btn:hover{transform:translateY(-2px)}
+  .cta .fine{font-size:14px;color:#8990a0;margin-top:20px}
+
+  footer{padding:36px 0 64px;text-align:center;color:var(--grey);font-size:14px}
+  footer a{color:var(--black);font-weight:600}
+
+  /* ===== MOCK DASHBOARDS ===== */
+  .mock{width:100%;background:#fff;border-radius:18px;padding:22px 22px 24px;text-align:left;
+    box-shadow:0 1px 0 rgba(51,51,51,.04);font-size:14px;color:var(--ink)}
+  .mock-head{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--black);
+    margin-bottom:18px;letter-spacing:-.01em}
+  .mock-badge{font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--grey-l);
+    background:var(--block);padding:3px 8px;border-radius:100px;margin-left:auto}
+  .mock-dot{width:9px;height:9px;border-radius:50%;background:var(--green)}
+  /* funnel */
+  .funnel{display:flex;flex-direction:column;gap:10px}
+  .frow{display:flex;align-items:center;gap:12px}
+  .frow .lbl{width:130px;font-size:13px;color:var(--grey);flex-shrink:0}
+  .fbar{height:38px;border-radius:9px;background:linear-gradient(90deg,var(--primary),var(--blue-light));
+    display:flex;align-items:center;gap:8px;padding:0 14px;color:#fff;font-weight:700;min-width:60px}
+  .fbar.green{background:linear-gradient(90deg,var(--green),#6fc83a)}
+  .fbar b{font-size:16px}
+  .fbar i{font-style:normal;font-size:12px;opacity:.85;font-weight:600}
+  /* channels table */
+  .mtbl{width:100%;border-collapse:collapse;font-size:13px}
+  .mtbl th{text-align:left;color:var(--grey-l);font-size:10px;text-transform:uppercase;letter-spacing:.04em;
+    font-weight:700;padding:0 10px 10px;border:none;background:none}
+  .mtbl td{padding:11px 10px;border-bottom:1px solid var(--border);color:var(--ink)}
+  .mtbl tr:last-child td{border-bottom:none}
+  .mtbl td.ch{font-weight:600;color:var(--black)}
+  .mtbl td.num{font-variant-numeric:tabular-nums;text-align:right;font-weight:600}
+  .chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:100px}
+  .chip.g{background:var(--green-10);color:var(--green)}
+  .chip.o{background:var(--orange-10);color:var(--orange)}
+  .chip.r{background:var(--red-10);color:var(--red)}
+  /* line chart */
+  .chart{position:relative}
+  .chart svg{width:100%;height:auto;display:block}
+  .chart .legend{display:flex;gap:18px;margin-top:12px;font-size:12px;color:var(--grey)}
+  .chart .legend span{display:inline-flex;align-items:center;gap:6px}
+  .chart .legend .sw{width:14px;height:3px;border-radius:2px;background:var(--primary)}
+  .chart .legend .sw.dash{background:repeating-linear-gradient(90deg,var(--grey-l) 0 4px,transparent 4px 7px)}
+  /* schedule grid */
+  .sched{display:grid;grid-template-columns:auto repeat(6,1fr);gap:5px}
+  .sched .cell{height:30px;border-radius:6px;font-size:10px;display:flex;align-items:center;justify-content:center;font-weight:600}
+  .sched .htime{background:none;color:var(--grey-l);justify-content:flex-end;padding-right:6px;font-size:10px}
+  .sched .day{background:none;color:var(--grey-l);font-size:10px;height:auto;padding-bottom:2px}
+  .cell.ok{background:var(--green-10);color:var(--green)}
+  .cell.hot{background:var(--red-10);color:var(--red)}
+  .cell.cold{background:var(--block);color:var(--grey-l)}
+  .cell.mid{background:var(--orange-10);color:var(--orange)}
+  .sched-leg{display:flex;gap:16px;margin-top:14px;font-size:12px;color:var(--grey)}
+  .sched-leg span{display:inline-flex;align-items:center;gap:6px}
+  .sched-leg i{width:12px;height:12px;border-radius:4px;display:inline-block}
+
+  @media(max-width:860px){
+    body{font-size:18px}
+    .hero{padding:64px 0 0}
+    .hero h1{font-size:42px}
+    .hero .sub{font-size:19px}
+    .hero-grid{grid-template-columns:1fr;gap:32px}
+    .hero-photo img{height:320px;border-radius:24px}
+    .hero-stats{grid-template-columns:1fr 1fr}
+    .hs{border-right:none;border-bottom:1px solid rgba(255,255,255,.12)}
+    h2{font-size:34px}
+    .pains{grid-template-columns:1fr}
+    .bigstat{grid-template-columns:1fr;text-align:center;padding:32px 28px;gap:16px}
+    .bigstat .num{font-size:64px}
+    .feature .inner{grid-template-columns:1fr;gap:32px}
+    .feature.rev .text{order:0}
+    .quote p{font-size:23px}
+    .photo-full{height:300px}
+    .cta h2{font-size:30px}
+  }
+</style>
+</head>
+<body>
+
+<!-- DRAFT NOTE (убрать после согласования) -->
+<div class="draft"><div class="wrap">👋 <strong>Черновик кейса на ваше согласование.</strong> Любые цифры, формулировки и фото можно поправить или убрать — напишите, что изменить. Графики дашбордов сейчас условные, заменим на ваши реальные.</div></div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <span class="kick">● Кейс · Fitbase Lab · Stretch House Киров</span>
+      <h1>«Я двигаюсь <em>не на ощупь</em>»</h1>
+      <p class="sub">Как студия стрейчинга в Кирове сделала экономику прозрачной, подняла продления с 2–4 до почти 40 в месяц и поставила рекорд по реализации — в несезонный май.</p>
+    </div>
+    <div class="hero-photo">
+      <img src="img/01.jpg" alt="Алена, собственница Stretch House Киров">
+      <span class="cap">Алена · собственница студии</span>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:56px">
+    <div class="hero-stats">
+      <div class="hs"><div class="n">×2</div><div class="l">рост реализации с января</div></div>
+      <div class="hs"><div class="n">2–4 → 40</div><div class="l">продлений в месяц</div></div>
+      <div class="hs"><div class="n">542<span class="u"> тыс ₽</span></div><div class="l">реализация в мае — рекорд</div></div>
+      <div class="hs"><div class="n">6ч → <span class="u">0</span></div><div class="l">ручного подсчёта каналов</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== META ===== -->
+<div class="meta"><div class="wrap">
+  <div class="mi"><div class="k">Студия</div><div class="v">Stretch House, Киров</div></div>
+  <div class="mi"><div class="k">Формат</div><div class="v">Студия стрейчинга</div></div>
+  <div class="mi"><div class="k">База</div><div class="v">~100–140 активных</div></div>
+  <div class="mi"><div class="k">Период</div><div class="v">Октябрь 2025 → май 2026</div></div>
+  <div class="mi"><div class="k">Продукты Fitbase</div><div class="v">CRM · Дашборды Fitbase Lab · Рекурренты</div></div>
+</div></div>
+
+<!-- ===== INTRO: знакомство ===== -->
+<section class="block">
+  <div class="narrow">
+    <div class="eyebrow">Знакомство</div>
+    <h2>Управляющая, которая решила стать собственником</h2>
+    <p class="lead">Алена пришла в стрейчинг не с улицы. Четыре года во франшизе Stretch House в Уфе она прошла все роли — менеджер, тренер, управляющая, РТО. К моменту, когда решила открыть своё, она знала бизнес изнутри до последней детали.</p>
+    <p>В 2025 году выбор стоял между двумя путями: открыть студию с нуля в родном Питере или купить действующую. Алена выбрала математику. Аренда в Питере — 280 тысяч в месяц, в Кирове — 60. Выручка сопоставимая, а расходы кратно ниже. Она подняла отчёты франшизы по обоим городам, увидела, что в пиковый сезон кировская точка делала больше миллиона выручки, — и приняла решение.</p>
+    <div class="quote">
+      <p>«Я понимаю, в чём я экспертна, и где могу это усилить. Поэтому — Киров. Неважно, в каком состоянии он был».</p>
+      <cite>Алена, собственница Stretch House Киров</cite>
+    </div>
+    <p>А состояние было плачевным. Прежний собственник уехал в Питер и фактически бросил студию: пять тренировок в день, слабый тренерский состав, гора непроведённых возвратов, без отдела продаж и без какого-либо учёта. Алена зашла, перезапустила позиционирование «Stretch House 2.0» — и <strong>окупила стоимость покупки за первый же месяц</strong>.</p>
+    <p>Казалось, всё под контролем. Октябрь и ноябрь это подтверждали. А потом наступил декабрь.</p>
+  </div>
+</section>
+
+<!-- ===== PHOTO: studio brand ===== -->
+<div class="photo-full">
+  <img src="img/04.jpg" alt="Студия Stretch House в Кирове">
+</div>
+
+<!-- ===== PAIN ===== -->
+<section class="block tight" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="narrow" style="padding:0">
+      <div class="eyebrow red">Точка А · что было сломано</div>
+      <h2>Студия росла. И этот рост был ловушкой</h2>
+      <p class="lead">Снаружи — продажи идут, новые клиенты приходят. Внутри — бизнес держался на одном источнике, который вот-вот должен был иссякнуть. И никто этого не видел, потому что видеть было нечем.</p>
+    </div>
+
+    <div class="pains">
+      <div class="pain">
+        <div class="ic">🔥</div>
+        <h4>Рост только на новичках</h4>
+        <p>Все продажи — новым клиентам. «Рано или поздно мы выжмем всю аудиторию, которая о нас ещё не знает». Студия на третьем году, повторные заявки уже пошли — рынок начал выгорать.</p>
+      </div>
+      <div class="pain">
+        <div class="ic">📉</div>
+        <h4>Почти нет продлений</h4>
+        <p>При базе 150–180 человек студия делала 2–4 продления в месяц. И те — когда клиенты сами подходили со словами «возьмите мои деньги». Системной работы с удержанием не было.</p>
+      </div>
+      <div class="pain">
+        <div class="ic">🌫️</div>
+        <h4>Ничего не подсвечивалось</h4>
+        <p>«Не получается продавать — значит, проблема в отделе продаж. Меняем менеджеров». Решения принимались на морально-волевых, вслепую, потому что данных под рукой не было.</p>
+      </div>
+      <div class="pain">
+        <div class="ic">⏳</div>
+        <h4>6 часов на один отчёт</h4>
+        <p>Чтобы посчитать стоимость клиента по рекламному каналу, ассистент вручную сверял номера, карточки, записи и покупки. Полдня работы на цифру, которая должна быть под рукой каждый день.</p>
+      </div>
+      <div class="pain">
+        <div class="ic">💸</div>
+        <h4>Декабрь в минус</h4>
+        <p>Выручка 400 тысяч, бюджет на рекламу подняли до 100 тысяч — а заявки дорожают, продлений нет, новички не доходят. Первый минусовый месяц за всё время.</p>
+      </div>
+      <div class="pain">
+        <div class="ic">⚠️</div>
+        <h4>Страх лета</h4>
+        <p>Опыт Уфы: летом выручка падала до 400 тысяч, жёсткие кассовые разрывы, 121 отменённая тренировка за август. Несезон в фитнесе способен утопить студию, которая живёт от заявки до заявки.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TURNING POINT ===== -->
+<section class="block">
+  <div class="narrow">
+    <div class="eyebrow">Перелом</div>
+    <h2>Дашборд, в который Алена сначала не поверила</h2>
+    <p>Зимой на слёте франшизы аналитик Fitbase Lab Андрей Осин и директор по развитию Fitbase Анастасия Гулянина показывали дашборды для студий. Реакция Алены была честной — и типичной для владельца одной точки.</p>
+    <div class="quote">
+      <p>«Я сидела и думала: да на кой он мне нужен, у меня одна студия. Чем он мне поможет?»</p>
+      <cite>Алена — про первое знакомство с дашбордом</cite>
+    </div>
+    <p>Дашборд она подключила только в январе — по совету владельца франшизы. А дальше началась работа, которую сложно недооценить: аналитик Андрей не просто выдал доступ, а лично и настойчиво проводил Алену через каждую метрику, пока абстрактные таблицы не превратились в понятную картину её собственного бизнеса.</p>
+    <p>Ключевым стало понятие <strong>реализации</strong> — сколько услуг клиент реально получил, а не сколько вы ему продали. Для студии с годовыми абонементами это и есть пропасть между «деньги в кассе» и «деньги ваши». Клиент платит 44 тысячи за 96 занятий вперёд. Если он не ходит — абонемент сгорит, формально деньги ваши, но человек не продлится и в любой момент может прийти за возвратом. Касса показывает рост. Реальная картина — другая.</p>
+    <div class="quote pink" style="border-left-color:var(--primary)">
+      <p>«Реализацию я получу. Но продлится ли клиент дальше?»</p>
+      <cite>Алена — как она объясняет суть реализации</cite>
+    </div>
+    <div class="callout">
+      <div class="t">Почему «реализация ×2» — это не «вдвое больше кассы»</div>
+      <p>Рост реализации вдвое означает, что студия стала быстрее и честнее отдавать услуги по уже проданным абонементам и удерживать людей на продление. Снижается риск возвратов, растёт LTV. Касса при этом не удваивается — но именно реализация показывает реальное здоровье бизнеса, а не иллюзию из авансов.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RESULT 1: TRANSPARENCY ===== -->
+<div class="feature">
+  <div class="inner">
+    <div class="text">
+      <span class="tag">Прозрачность</span>
+      <h3>Решения перестали приниматься вслепую</h3>
+      <p>Раньше при проседании продаж Алена меняла менеджеров наугад. Теперь она проваливается в воронку до конкретной точки провала: где менеджер не дожал, где лид изначально был слабый. Опыт всех ролей в студии плюс данные на экране — и картина складывается целиком.</p>
+      <p style="margin-bottom:0"><strong>«У меня это не просто отчёт, где возможно что-то не так. Я понимаю, в чём именно у меня затык».</strong></p>
+    </div>
+    <div class="visual">
+      <div class="mock">
+        <div class="mock-head"><span class="mock-dot"></span>Воронка · май <span class="mock-badge">демо-данные</span></div>
+        <div class="funnel">
+          <div class="frow"><div class="lbl">Лиды</div><div class="fbar" style="width:100%"><b>121</b></div></div>
+          <div class="frow"><div class="lbl">Запись на пробное</div><div class="fbar" style="width:80%"><b>51</b><i>· 42%</i></div></div>
+          <div class="frow"><div class="lbl">Дошли</div><div class="fbar" style="width:70%"><b>45</b><i>· 88%</i></div></div>
+          <div class="frow"><div class="lbl">Купили</div><div class="fbar green" style="width:40%"><b>15</b><i>· 12%</i></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESULT 2: CHANNELS ===== -->
+<div class="feature rev">
+  <div class="inner">
+    <div class="text">
+      <span class="tag">Маркетинг</span>
+      <h3>Каждый канал виден и посчитан</h3>
+      <p>Подсчёт стоимости клиента по рекламному каналу — это была шестичасовая ручная работа ассистента. Теперь это дашборд, который обновляется сам. Видно, какой канал сколько приносит и сколько стоит: проблема в маркетинге — идём в маркетинг, проблема в продажах — усиливаем отдел.</p>
+      <div class="score">⏱ Было 6 часов вручную → стало моментально · Оценка 10/10</div>
+    </div>
+    <div class="visual">
+      <div class="mock">
+        <div class="mock-head"><span class="mock-dot"></span>Источники трафика <span class="mock-badge">демо-данные</span></div>
+        <table class="mtbl">
+          <thead><tr><th>Канал</th><th style="text-align:right">Лиды</th><th style="text-align:right">CPL</th><th style="text-align:right">В оплату</th></tr></thead>
+          <tbody>
+            <tr><td class="ch">ВК реклама</td><td class="num">64</td><td class="num">980 ₽</td><td class="num"><span class="chip g">14%</span></td></tr>
+            <tr><td class="ch">Оффлайн / промо</td><td class="num">28</td><td class="num">1 240 ₽</td><td class="num"><span class="chip o">9%</span></td></tr>
+            <tr><td class="ch">Рекомендации</td><td class="num">19</td><td class="num">0 ₽</td><td class="num"><span class="chip g">26%</span></td></tr>
+            <tr><td class="ch">Сайт / карты</td><td class="num">10</td><td class="num">640 ₽</td><td class="num"><span class="chip r">6%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESULT 3: RENEWALS (the big one) ===== -->
+<section class="block" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="narrow" style="text-align:center">
+    <div class="eyebrow green">Главный результат</div>
+    <h2>Продления выросли в десять раз</h2>
+    <p class="lead">Самый дешёвый рост — из клиентов, которые уже у вас в базе. Раньше студия его не видела и не использовала. Теперь это основной двигатель.</p>
+  </div>
+  <div class="bigstat">
+    <div class="num green">2–4&nbsp;→&nbsp;40</div>
+    <div class="txt">продлений в месяц. В марте — уже 20, к маю — почти 40. Дашборд показывает проценты реализации и любимые секции клиента, под это отдел продаж перестроил скрипты: «вы же ходили на аэрострейчинг, а у нас сейчас…». <b>Продление перестало быть удачей и стало процессом.</b></div>
+  </div>
+  <div class="narrow" style="text-align:center">
+    <div class="quote green" style="margin-left:auto;margin-right:auto">
+      <p>«Благодаря продлениям мы сейчас существуем. Если бы их не было — работали бы в минус».</p>
+      <cite>Алена</cite>
+    </div>
+    <p style="font-size:18px;color:var(--grey)">Чтобы получить столько же платящих через рекламу, понадобились бы сотни новых лидов. Продления дали тот же результат — без единого нового рубля на привлечение.</p>
+  </div>
+</section>
+
+<!-- ===== RESULT 4: RECORD ===== -->
+<div class="feature">
+  <div class="inner">
+    <div class="text">
+      <span class="tag fav">★ Любимый дашборд</span>
+      <h3>Рекорд по реализации — в несезонный май</h3>
+      <p>Май — месяц, когда фитнес традиционно проседает: дачи, огороды, отпуска. Студия Алены сделала наоборот — поставила рекорд за всю историю.</p>
+      <p style="margin-bottom:0">542 тысячи реализации против 497 в апреле. И это при прогнозе 531 — Алена его перевыполнила. <strong>«Я Борец, мне хочется быть лучше прогноза».</strong></p>
+    </div>
+    <div class="visual">
+      <div class="mock">
+        <div class="mock-head"><span class="mock-dot"></span>Реализация по месяцам, тыс ₽ <span class="mock-badge">демо-данные</span></div>
+        <div class="chart">
+          <svg viewBox="0 0 440 220" preserveAspectRatio="xMidYMid meet">
+            <!-- grid -->
+            <g stroke="#EEEFF1" stroke-width="1">
+              <line x1="40" y1="30" x2="430" y2="30"/>
+              <line x1="40" y1="75" x2="430" y2="75"/>
+              <line x1="40" y1="120" x2="430" y2="120"/>
+              <line x1="40" y1="165" x2="430" y2="165"/>
+            </g>
+            <!-- y labels -->
+            <g fill="#9898A5" font-size="11" font-family="Golos Text">
+              <text x="34" y="34" text-anchor="end">550</text>
+              <text x="34" y="79" text-anchor="end">450</text>
+              <text x="34" y="124" text-anchor="end">350</text>
+              <text x="34" y="169" text-anchor="end">250</text>
+            </g>
+            <!-- forecast dashed -->
+            <line x1="350" y1="45" x2="430" y2="40" stroke="#9898A5" stroke-width="2" stroke-dasharray="5 5"/>
+            <text x="392" y="32" fill="#757885" font-size="10" font-family="Golos Text" text-anchor="middle">прогноз 531</text>
+            <!-- area -->
+            <path d="M55 150 L150 138 L245 120 L340 92 L425 38 L425 165 L55 165 Z" fill="#3C67D6" opacity="0.07"/>
+            <!-- line -->
+            <polyline points="55,150 150,138 245,120 340,92 425,38" fill="none" stroke="#3C67D6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- points -->
+            <g fill="#3C67D6"><circle cx="55" cy="150" r="4"/><circle cx="150" cy="138" r="4"/><circle cx="245" cy="120" r="4"/><circle cx="340" cy="92" r="4"/></g>
+            <!-- record point -->
+            <circle cx="425" cy="38" r="7" fill="#4EB410"/><circle cx="425" cy="38" r="12" fill="#4EB410" opacity="0.18"/>
+            <text x="425" y="22" fill="#4EB410" font-size="13" font-weight="700" font-family="Golos Text" text-anchor="end">542</text>
+            <!-- x labels -->
+            <g fill="#757885" font-size="11" font-family="Golos Text" text-anchor="middle">
+              <text x="55" y="185">Янв</text><text x="150" y="185">Фев</text><text x="245" y="185">Мар</text><text x="340" y="185">Апр</text><text x="425" y="185">Май</text>
+            </g>
+          </svg>
+          <div class="legend"><span><i class="sw"></i>Факт реализации</span><span><i class="sw dash"></i>Прогноз</span><span style="color:var(--green);font-weight:600">● Рекорд · 542к</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESULT 5: SMART SCHEDULE + FORECAST ===== -->
+<div class="feature rev">
+  <div class="inner">
+    <div class="text">
+      <span class="tag">Расписание + прогноз</span>
+      <h3>Где студия теряет деньги — теперь видно на сетке</h3>
+      <p>Умное расписание подсвечивает нерентабельные слоты и рекомендует стоимость. РТО студии перестраивает направления: на провальные часы ставит то, что плохо ходит, и поднимает реализацию.</p>
+      <p style="margin-bottom:0">А прогноз выручки и реализации работает как ежедневный рычаг: цифра перед глазами не даёт расслабиться и подталкивает её превзойти.</p>
+    </div>
+    <div class="visual">
+      <div class="mock">
+        <div class="mock-head"><span class="mock-dot"></span>Умное расписание · загрузка слотов <span class="mock-badge">демо-данные</span></div>
+        <div class="sched">
+          <div class="cell day"></div><div class="cell day">Пн</div><div class="cell day">Вт</div><div class="cell day">Ср</div><div class="cell day">Чт</div><div class="cell day">Пт</div><div class="cell day">Сб</div>
+          <div class="cell htime">10:00</div><div class="cell ok">8</div><div class="cell mid">5</div><div class="cell ok">7</div><div class="cell mid">5</div><div class="cell hot">10</div><div class="cell cold">2</div>
+          <div class="cell htime">12:00</div><div class="cell cold">3</div><div class="cell ok">7</div><div class="cell ok">8</div><div class="cell hot">10</div><div class="cell ok">6</div><div class="cell cold">2</div>
+          <div class="cell htime">18:00</div><div class="cell hot">10</div><div class="cell hot">10</div><div class="cell ok">8</div><div class="cell hot">10</div><div class="cell ok">7</div><div class="cell cold">3</div>
+          <div class="cell htime">20:00</div><div class="cell ok">6</div><div class="cell mid">5</div><div class="cell ok">7</div><div class="cell mid">5</div><div class="cell cold">3</div><div class="cell cold">2</div>
+        </div>
+        <div class="sched-leg">
+          <span><i style="background:var(--green-10)"></i>норма</span>
+          <span><i style="background:var(--orange-10)"></i>недозагрузка</span>
+          <span><i style="background:var(--red-10)"></i>перегруз</span>
+          <span><i style="background:var(--block)"></i>провал</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PHOTO BREAK ===== -->
+<div class="photo-full">
+  <img src="img/05.jpg" alt="Тренировка в студии Stretch House Киров">
+</div>
+
+<!-- ===== TRANSFORMATION ===== -->
+<section class="block">
+  <div class="narrow" style="text-align:center">
+    <div class="eyebrow">Точка Б</div>
+    <h2>Главное изменение — не в цифрах, а в управлении</h2>
+    <p class="lead">Раньше Алена принимала решения на интуиции и не всегда могла объяснить даже собственный успех. Январский рекорд выручки она списала на сезонность. Теперь каждый результат — управляемый.</p>
+    <div class="quote" style="margin-left:auto;margin-right:auto">
+      <p>«Я понимаю, на что и как я могу повлиять. И сейчас я чувствую себя спокойно — даже когда конкуренты вокруг закрываются».</p>
+      <cite>Алена</cite>
+    </div>
+    <p style="font-size:18px;color:var(--grey)">Пока студии Stretch House, Левиты и других франшиз сворачиваются и продаются, кировская точка идёт в лето с рекордом и стратегией. Алене уже предложили выкупить местную студию Левиты — она рассматривает расширение.</p>
+  </div>
+</section>
+
+<!-- ===== PHOTO: atmosphere ===== -->
+<div class="photo-full">
+  <img src="img/02.jpg" alt="Студия Stretch House — «Счастье есть. Оно здесь»">
+</div>
+
+<!-- ===== NEXT STEP: RECURRENT ===== -->
+<section class="block next">
+  <div class="inner">
+    <span class="badge">Следующий шаг</span>
+    <h2>Рекурренты: мост через барьер в 44 тысячи</h2>
+    <p class="lead">Главный формат студии — абонемент 96 занятий за 44 000 ₽. Высокий чек отпугивает часть клиентов: даже рассрочку без процентов многие воспринимают как «банковский продукт» и не решаются.</p>
+    <p>Подписка снимает этот барьер: не банк, просто ежемесячное списание с карты. И что важнее — её реализуют почти на 100%, потому что занятия нельзя перенести на следующий месяц. Дашборд уже посчитал точку безубыточности: подписка около 2 990 ₽ в месяц даёт студии тот же результат, что абонемент за 44 тысячи.</p>
+    <p>Подписок пока немного — Алена только начинает. Цель — 140–150 в месяц, и брать их не из новых клиентов, а из тех, кто был на пробном и не купил, и из закрытой базы предыдущего собственника.</p>
+    <div class="quote teal">
+      <p>«Это, по сути, мои бесплатные деньги — за их привлечение уже заплатил прошлый собственник».</p>
+      <cite>Алена — про базу для перехода на подписки</cite>
+    </div>
+    <p style="font-size:17px;color:var(--grey);margin-bottom:0"><em>Как пройдёт переход на рекуррентную модель — расскажем в следующем кейсе.</em></p>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta">
+  <div class="inner">
+    <h2>Хотите так же видеть свою студию?</h2>
+    <p>Подключаем дашборды Fitbase Lab и помогаем разобраться с реализацией, продлениями и каналами — вместе с персональным аналитиком, как Андрей провёл Алену через декабрь.</p>
+    <a class="btn" href="https://fitbase.io/lab">Получить разбор студии с аналитиком</a>
+    <div class="fine">Цифры кейса публикуются с разрешения Алены и Stretch House Киров · май 2026</div>
+  </div>
+</section>
+
+<footer>
+  <a href="https://fitbase.io">Fitbase</a> · Fitbase Lab — аналитика для фитнес-бизнеса
+</footer>
+
+</body>
+</html>
